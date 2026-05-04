@@ -1,6 +1,7 @@
 <div align="center">
-  <h1>Figtooffice</h1>
+  <h1>FormulaDoc</h1>
   <p><strong>面向 Windows 的 Office 文档转换工具</strong></p>
+  <p>by Jorlin</p>
   <p>图片转 Word · 图片转 Excel · PDF 转 Word</p>
   <p>
     <a href="https://github.com/GeoHydrocarbon/Figtooffice/releases">下载发布包</a>
@@ -32,7 +33,7 @@
 
 ## 产品简介
 
-Figtooffice 的目标很直接：把图片或 PDF 中的文字、公式、表格恢复成可以继续编辑的 Office 文档，而不是只生成截图式结果。
+FormulaDoc 的目标很直接：把图片或 PDF 中的文字、公式、表格恢复成可以继续编辑的 Office 文档，而不是只生成截图式结果。
 
 当前提供 3 个核心能力：
 
@@ -43,7 +44,7 @@ Figtooffice 的目标很直接：把图片或 PDF 中的文字、公式、表格
 ## 界面预览
 
 <div align="center">
-  <img src="Figstooffcie/docs/screenshots/main-window.png" alt="Figtooffice 主界面" width="100%">
+  <img src="Figstooffcie/docs/screenshots/main-window.png" alt="FormulaDoc 主界面" width="100%">
 </div>
 
 ## 适合什么场景
@@ -58,7 +59,7 @@ Figtooffice 的目标很直接：把图片或 PDF 中的文字、公式、表格
 1. 打开 [Releases](https://github.com/GeoHydrocarbon/Figtooffice/releases)
 2. 下载 Windows 发布包
 3. 解压整个压缩包
-4. 运行 `Figstooffcie.exe`
+4. 运行 `FormulaDoc.exe`
 5. 在“设置”页填写自己的 `API Key`
 
 ## 仓库说明

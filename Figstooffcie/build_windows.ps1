@@ -1,4 +1,4 @@
-# 在 Figstooffcie 目录生成 dist\Figstooffcie\Figstooffcie.exe（目录分发，Qt 更稳定）
+# 在 Figstooffcie 目录生成 dist\FormulaDoc\FormulaDoc.exe（目录分发，Qt 更稳定）
 $ErrorActionPreference = "Stop"
 $root = Split-Path -Parent $MyInvocation.MyCommand.Path
 Set-Location $root
@@ -32,6 +32,7 @@ foreach ($target in $pathlibTargets) {
 
 # 避免 PyInstaller 清理 dist 时因 exe 仍占用而 Permission denied
 Stop-Process -Name "Figstooffcie" -Force -ErrorAction SilentlyContinue
+Stop-Process -Name "FormulaDoc" -Force -ErrorAction SilentlyContinue
 Start-Sleep -Seconds 1
 & $py -m PyInstaller --noconfirm --clean (Join-Path $root "Figstooffcie.spec")
 if ($LASTEXITCODE -ne 0) {
@@ -39,4 +40,4 @@ if ($LASTEXITCODE -ne 0) {
 }
 
 Write-Host ""
-Write-Host "完成。运行: $($root)\dist\Figstooffcie\Figstooffcie.exe"
+Write-Host "完成。运行: $($root)\dist\FormulaDoc\FormulaDoc.exe"

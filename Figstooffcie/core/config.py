@@ -2,11 +2,14 @@ from __future__ import annotations
 
 import json
 import os
+import shutil
 from dataclasses import asdict, dataclass
 from pathlib import Path
 
 
-APP_NAME = "Figstooffcie"
+APP_NAME = "FormulaDoc"
+APP_AUTHOR = "Jorlin"
+LEGACY_APP_NAMES = ("Figstooffcie",)
 SUPPORTED_IMAGE_EXTENSIONS = (".png", ".jpg", ".jpeg", ".webp", ".bmp", ".gif")
 SUPPORTED_PDF_EXTENSIONS = (".pdf",)
 
@@ -40,6 +43,7 @@ def build_app_paths(project_root: Path) -> AppPaths:
     user_data_dir = base_dir / APP_NAME
     try:
         user_data_dir.mkdir(parents=True, exist_ok=True)
+        _migrate_legacy_data(base_dir, user_data_dir)
     except PermissionError:
         user_data_dir = project_root / ".localdata"
         user_data_dir.mkdir(parents=True, exist_ok=True)
@@ -49,6 +53,19 @@ def build_app_paths(project_root: Path) -> AppPaths:
         settings_file=user_data_dir / "settings.json",
         secrets_file=user_data_dir / "secrets.json",
     )
+
+
+def _migrate_legacy_data(base_dir: Path, user_data_dir: Path) -> None:
+    for legacy_name in LEGACY_APP_NAMES:
+        legacy_dir = base_dir / legacy_name
+        if not legacy_dir.is_dir() or legacy_dir == user_data_dir:
+            continue
+        for filename in ("settings.json", "secrets.json"):
+            source = legacy_dir / filename
+            target = user_data_dir / filename
+            if source.is_file() and not target.exists():
+                shutil.copy2(source, target)
+        break
 
 
 class SettingsStore:

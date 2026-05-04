@@ -4,13 +4,13 @@ import sys
 from PySide6.QtWidgets import QApplication
 
 from app.main_window import MainWindow
-from core.config import build_app_paths
+from core.config import APP_AUTHOR, APP_NAME, build_app_paths
 
 
 def main() -> int:
     app = QApplication(sys.argv)
-    app.setApplicationName("Figstooffcie")
-    app.setOrganizationName("Figstooffcie")
+    app.setApplicationName(APP_NAME)
+    app.setOrganizationName(APP_AUTHOR)
 
     project_root = Path(__file__).resolve().parent
     paths = build_app_paths(project_root)

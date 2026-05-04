@@ -1,6 +1,7 @@
 <div align="center">
-  <h1>Figstooffcie</h1>
+  <h1>FormulaDoc</h1>
   <p><strong>Windows 桌面版文档处理工具</strong></p>
+  <p>by Jorlin</p>
   <p>图片转 Word · 图片转 Excel · PDF 转 Word</p>
   <p>
     <a href="https://github.com/GeoHydrocarbon/Figtooffice/releases">下载发布包</a>
@@ -38,7 +39,7 @@
 ## 界面预览
 
 <div align="center">
-  <img src="docs/screenshots/main-window.png" alt="Figstooffcie 主界面" width="100%">
+  <img src="docs/screenshots/main-window.png" alt="FormulaDoc 主界面" width="100%">
 </div>
 
 ## 输入方式
@@ -55,7 +56,7 @@
 1. 打开 [Releases](https://github.com/GeoHydrocarbon/Figtooffice/releases)
 2. 下载 Windows 发布包
 3. 解压整个压缩包
-4. 运行 `Figstooffcie.exe`
+4. 运行 `FormulaDoc.exe`
 5. 在“设置”页填写自己的 `API Key`
 
 ### 本地运行源码
@@ -73,7 +74,7 @@ python main.py
 .\build_windows.ps1
 ```
 
-打包结果输出到 `dist\Figstooffcie\`，分发时需要**整个目录一起发送**，不要只发送单个 `Figstooffcie.exe`。
+打包结果输出到 `dist\FormulaDoc\`，分发时需要**整个目录一起发送**，不要只发送单个 `FormulaDoc.exe`。
 
 当前瘦身后的分发目录大约 `213 MB`，压缩包大约 `92 MB`。
 
@@ -81,7 +82,7 @@ python main.py
 
 - 首次运行时，用户只需要在“设置”页填写自己的 `API Key`
 - 仓库不会提交 `conda_env/`、`build/`、`dist/`、`.localdata/` 等本地产物
-- 如果重新打包，请先关闭正在运行的 `Figstooffcie.exe`
+- 如果重新打包，请先关闭正在运行的 `FormulaDoc.exe`
 
 ## 公式说明
 

@@ -110,7 +110,7 @@ exe = EXE(
     a.scripts,
     [],
     exclude_binaries=True,
-    name="Figstooffcie",
+    name="FormulaDoc",
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
@@ -131,5 +131,5 @@ coll = COLLECT(
     strip=False,
     upx=False,
     upx_exclude=[],
-    name="Figstooffcie",
+    name="FormulaDoc",
 )

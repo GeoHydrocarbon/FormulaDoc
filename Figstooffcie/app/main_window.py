@@ -19,7 +19,7 @@ from PySide6.QtWidgets import (
 
 from app.pages.module_page import ModuleRunPage
 from app.pages.settings_page import SettingsPage
-from core.config import AppPaths, SettingsStore
+from core.config import APP_AUTHOR, APP_NAME, AppPaths, SettingsStore
 from core.registry import ModuleRegistry
 from modules.img_to_excel.module import create_module as create_excel_module
 from modules.pdf_to_word.module import create_module as create_pdf_module
@@ -38,7 +38,7 @@ class MainWindow(QMainWindow):
         self.registry.register(create_excel_module())
         self.registry.register(create_pdf_module())
 
-        self.setWindowTitle("Figstooffcie")
+        self.setWindowTitle(APP_NAME)
         self.resize(1200, 820)
 
         self.sidebar = QListWidget()
@@ -109,12 +109,18 @@ class MainWindow(QMainWindow):
         root_layout.addWidget(splitter)
 
         self.setCentralWidget(root)
+        self.statusBar().showMessage("图像与 PDF 转可编辑文档")
+        self.statusBar().addPermanentWidget(QLabel(f"Made by {APP_AUTHOR}"))
         self.sidebar.currentRowChanged.connect(self.stack.setCurrentIndex)
 
     def _build_menu(self) -> None:
         settings_action = QAction("设置", self)
         settings_action.triggered.connect(lambda: self.sidebar.setCurrentRow(len(self.module_pages)))
         self.menuBar().addAction(settings_action)
+
+        about_action = QAction("关于", self)
+        about_action.triggered.connect(self._show_about)
+        self.menuBar().addAction(about_action)
 
     def _populate_sidebar(self) -> None:
         items = [
@@ -144,3 +150,10 @@ class MainWindow(QMainWindow):
         self.log_view.appendPlainText(message)
         bar = self.log_view.verticalScrollBar()
         bar.setValue(bar.maximum())
+
+    def _show_about(self) -> None:
+        QMessageBox.about(
+            self,
+            f"关于 {APP_NAME}",
+            f"{APP_NAME}\n图像与 PDF 转可编辑文档\n\nCreated by {APP_AUTHOR}",
+        )
