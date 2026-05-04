@@ -5,13 +5,10 @@ Set-Location $root
 
 $py = Join-Path $root "conda_env\python.exe"
 if (-not (Test-Path $py)) {
-    $legacyPy = Join-Path (Split-Path $root -Parent) "Figstooffcie\conda_env\python.exe"
-    if (Test-Path $legacyPy) {
-        $py = $legacyPy
-    }
+    $py = Join-Path $root "conda_env\Scripts\python.exe"
 }
 if (-not (Test-Path $py)) {
-    Write-Error "未找到可用的 python.exe。请先在 FormulaDoc\conda_env 中创建环境，或保留旧的 Figstooffcie\conda_env 作为兼容环境。"
+    Write-Error "未找到 FormulaDoc\conda_env 下可用的 python.exe。请先在当前项目目录下创建本地环境。"
 }
 
 & $py -m PyInstaller --version *> $null
@@ -23,7 +20,11 @@ if ($LASTEXITCODE -ne 0) {
 }
 
 # 某些环境会装入 pathlib 的旧回移植包，PyInstaller 会直接拒绝启动；打包前定点移除
-$sitePackages = Join-Path (Split-Path $py -Parent) "Lib\site-packages"
+$envRoot = Split-Path $py -Parent
+if ((Split-Path $envRoot -Leaf) -ieq "Scripts") {
+    $envRoot = Split-Path $envRoot -Parent
+}
+$sitePackages = Join-Path $envRoot "Lib\site-packages"
 $pathlibTargets = @(
     (Join-Path $sitePackages "pathlib.py"),
     (Join-Path $sitePackages "pathlib-1.0.1.dist-info"),
@@ -38,7 +39,6 @@ foreach ($target in $pathlibTargets) {
 
 # 避免 PyInstaller 清理 dist 时因 exe 仍占用而 Permission denied
 Stop-Process -Name "FormulaDoc" -Force -ErrorAction SilentlyContinue
-Stop-Process -Name "Figstooffcie" -Force -ErrorAction SilentlyContinue
 Start-Sleep -Seconds 1
 & $py -m PyInstaller --noconfirm --clean (Join-Path $root "FormulaDoc.spec")
 if ($LASTEXITCODE -ne 0) {
