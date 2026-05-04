@@ -9,6 +9,7 @@ from pathlib import Path
 
 APP_NAME = "FormulaDoc"
 APP_AUTHOR = "Jorlin"
+APP_GITHUB_URL = "https://github.com/GeoHydrocarbon/FormulaDoc"
 LEGACY_APP_NAMES = ("Figstooffcie",)
 SUPPORTED_IMAGE_EXTENSIONS = (".png", ".jpg", ".jpeg", ".webp", ".bmp", ".gif")
 SUPPORTED_PDF_EXTENSIONS = (".pdf",)

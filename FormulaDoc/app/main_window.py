@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from PySide6.QtCore import Qt
-from PySide6.QtGui import QAction
+from PySide6.QtCore import Qt, QUrl
+from PySide6.QtGui import QAction, QDesktopServices
 from PySide6.QtWidgets import (
     QHBoxLayout,
     QLabel,
@@ -19,7 +19,7 @@ from PySide6.QtWidgets import (
 
 from app.pages.module_page import ModuleRunPage
 from app.pages.settings_page import SettingsPage
-from core.config import APP_AUTHOR, APP_NAME, AppPaths, SettingsStore
+from core.config import APP_AUTHOR, APP_GITHUB_URL, APP_NAME, AppPaths, SettingsStore
 from core.registry import ModuleRegistry
 from modules.img_to_excel.module import create_module as create_excel_module
 from modules.pdf_to_word.module import create_module as create_pdf_module
@@ -110,6 +110,11 @@ class MainWindow(QMainWindow):
 
         self.setCentralWidget(root)
         self.statusBar().showMessage("图像与 PDF 转可编辑文档")
+        github_label = QLabel(f'<a href="{APP_GITHUB_URL}">GitHub</a>')
+        github_label.setTextFormat(Qt.RichText)
+        github_label.setTextInteractionFlags(Qt.TextBrowserInteraction)
+        github_label.setOpenExternalLinks(True)
+        self.statusBar().addPermanentWidget(github_label)
         self.statusBar().addPermanentWidget(QLabel(f"Made by {APP_AUTHOR}"))
         self.sidebar.currentRowChanged.connect(self.stack.setCurrentIndex)
 
@@ -121,6 +126,10 @@ class MainWindow(QMainWindow):
         about_action = QAction("关于", self)
         about_action.triggered.connect(self._show_about)
         self.menuBar().addAction(about_action)
+
+        github_action = QAction("GitHub", self)
+        github_action.triggered.connect(lambda: QDesktopServices.openUrl(QUrl(APP_GITHUB_URL)))
+        self.menuBar().addAction(github_action)
 
     def _populate_sidebar(self) -> None:
         items = [
@@ -155,5 +164,5 @@ class MainWindow(QMainWindow):
         QMessageBox.about(
             self,
             f"关于 {APP_NAME}",
-            f"{APP_NAME}\n图像与 PDF 转可编辑文档\n\nCreated by {APP_AUTHOR}",
+            f"{APP_NAME}\n图像与 PDF 转可编辑文档\n\nCreated by {APP_AUTHOR}\n{APP_GITHUB_URL}",
         )

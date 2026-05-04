@@ -1,5 +1,5 @@
 # -*- mode: python ; coding: utf-8 -*-
-"""PyInstaller 配置：在 Figstooffcie 目录下执行 pyinstaller Figstooffcie.spec"""
+"""PyInstaller 配置：在 FormulaDoc 目录下执行 pyinstaller FormulaDoc.spec"""
 import importlib.util
 from pathlib import Path
 
@@ -24,6 +24,8 @@ hiddenimports = []
 
 # Conda 的 OpenSSL 在 Library\bin，与 DLLs\_ssl.pyd 成对；显式打入避免与系统/PySide 携带版本混用导致 _ssl 加载失败
 _conda_lib_bin = spec_dir / "conda_env" / "Library" / "bin"
+if not _conda_lib_bin.is_dir():
+    _conda_lib_bin = spec_dir.parent / "Figstooffcie" / "conda_env" / "Library" / "bin"
 if _conda_lib_bin.is_dir():
     for _pattern in ("libssl-*.dll", "libcrypto-*.dll"):
         for _p in sorted(_conda_lib_bin.glob(_pattern)):

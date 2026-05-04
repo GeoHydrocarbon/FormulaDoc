@@ -6,9 +6,9 @@
   <p>
     <a href="https://github.com/GeoHydrocarbon/FormulaDoc/releases">下载发布包</a>
     ·
-    <a href="https://github.com/GeoHydrocarbon/FormulaDoc/tree/main/Figstooffcie#快速开始">快速开始</a>
+    <a href="https://github.com/GeoHydrocarbon/FormulaDoc/tree/main/FormulaDoc#快速开始">快速开始</a>
     ·
-    <a href="https://github.com/GeoHydrocarbon/FormulaDoc/tree/main/Figstooffcie#核心模块">模块说明</a>
+    <a href="https://github.com/GeoHydrocarbon/FormulaDoc/tree/main/FormulaDoc#核心模块">模块说明</a>
     ·
     <a href="https://github.com/GeoHydrocarbon/FormulaDoc/issues">问题反馈</a>
   </p>
@@ -44,7 +44,7 @@ FormulaDoc 的目标很直接：把图片或 PDF 中的文字、公式、表格�
 ## 界面预览
 
 <div align="center">
-  <img src="Figstooffcie/docs/screenshots/main-window.png" alt="FormulaDoc 主界面" width="100%">
+  <img src="FormulaDoc/docs/screenshots/main-window.png" alt="FormulaDoc 主界面" width="100%">
 </div>
 
 ## 适合什么场景
@@ -64,8 +64,8 @@ FormulaDoc 的目标很直接：把图片或 PDF 中的文字、公式、表格�
 
 ## 仓库说明
 
-- 桌面应用源码位于 [Figstooffcie/](https://github.com/GeoHydrocarbon/FormulaDoc/tree/main/Figstooffcie)
-- 当前可执行程序和工程目录沿用 `Figstooffcie` 命名
+- 桌面应用源码位于 [FormulaDoc/](https://github.com/GeoHydrocarbon/FormulaDoc/tree/main/FormulaDoc)
+- 当前桌面应用目录和打包产物统一使用 `FormulaDoc` 命名
 - 根目录保留了一些早期脚本和实验文件
 
 ## 下一步

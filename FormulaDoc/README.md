@@ -68,7 +68,7 @@ python main.py
 
 ## Windows 可执行程序（打包）
 
-在 `Figstooffcie` 目录下使用已安装依赖的 Python：
+在 `FormulaDoc` 目录下使用已安装依赖的 Python：
 
 ```powershell
 .\build_windows.ps1
